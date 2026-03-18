@@ -1,4 +1,4 @@
-﻿namespace WpfMvvm.Services
+namespace WpfMvvm.Services
 {
     public class DummyWindowService : IWindowService
     {

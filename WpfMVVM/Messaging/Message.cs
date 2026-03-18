@@ -1,4 +1,4 @@
-﻿namespace WpfMvvm.Messaging
+namespace WpfMvvm.Messaging
 {
     /// <summary>
     /// MVVM Light Toolkitを基にしたMessage基底クラス

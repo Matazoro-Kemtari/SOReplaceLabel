@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -205,7 +205,7 @@ namespace PackingMethodTeacher
 
                     isDark = !isDark;
                     var ph = new MaterialDesignThemes.Wpf.PaletteHelper();
-                    ph.SetLightDark(isDark);
+                    //ph.SetLightDark(isDark);
 
 
                     if (packings.Count == 0)

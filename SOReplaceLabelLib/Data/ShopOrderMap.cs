@@ -1,4 +1,4 @@
-﻿using CsvHelper.Configuration;
+using CsvHelper.Configuration;
 
 namespace SOReplaceLabelLib.Data
 {

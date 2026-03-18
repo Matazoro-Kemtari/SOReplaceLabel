@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfMvvm.Properties {
+namespace SOReplaceLabel.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace WpfMvvm.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WpfMvvm.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SOReplaceLabel.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,15 +57,6 @@ namespace WpfMvvm.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   形式が異なっています に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ArgumentExceptionMessage {
-            get {
-                return ResourceManager.GetString("ArgumentExceptionMessage", resourceCulture);
             }
         }
     }

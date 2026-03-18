@@ -1,4 +1,4 @@
-﻿<metro:MetroWindow x:Name="window" 
+<metro:MetroWindow x:Name="window" 
     x:Class="PackingMethodTeacher.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -20,7 +20,7 @@
             <Button Content="変更" DockPanel.Dock="Left" Click="FileChangeButton_Click"/>
             <TextBox Name="CheckFilePath" Margin="3"
              IsReadOnly="True" TextWrapping="Wrap"
-             Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+             Style="{StaticResource MaterialDesignFilledTextBox}"
              materialDesign:HintAssist.Hint="変更状態監視ファイル"/>
         </DockPanel>
         <StackPanel Grid.Row="1" Margin="3" Orientation="Horizontal">
@@ -30,7 +30,7 @@
         <DockPanel Grid.Row="2" Margin="3">
             <Button Content="検索"  DockPanel.Dock="Left" Visibility="Collapsed"/>
             <TextBox Name="PartsNoText"              
-                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
                      IsReadOnly="True" TextWrapping="Wrap"
                      materialDesign:HintAssist.Hint="部品番号"
                      materialDesign:HintAssist.FloatingScale="0.3"
@@ -38,18 +38,18 @@
         </DockPanel>
         <TabControl Grid.Row="4" Margin="3">
             <TabItem Name="TabSetting" Header="設定" IsEnabled="False"
-                     metro:ControlsHelper.HeaderFontSize="32">
+                     metro:HeaderedControlHelper.HeaderFontSize="32">
                 <Border Name="blankPage">
                 </Border>
             </TabItem>
             <TabItem Name="TabWatching" Header="読込" IsEnabled="False"
-                     metro:ControlsHelper.HeaderFontSize="32">
+                     metro:HeaderedControlHelper.HeaderFontSize="32">
                 <Viewbox Name="watchPage" MaxWidth="940">
                     <Label HorizontalAlignment="Center" Content="読込待ち" FontSize="108" FontWeight="Bold" VerticalAlignment="Center"/>
                 </Viewbox>
             </TabItem>
             <TabItem Name="TabRegister" Header="登録・変更" IsEnabled="False"
-                     metro:ControlsHelper.HeaderFontSize="32">
+                     metro:HeaderedControlHelper.HeaderFontSize="32">
                 <StackPanel Name = "registPage" Orientation="Vertical" VerticalAlignment="Top">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -67,7 +67,7 @@
                 </StackPanel>
             </TabItem>
             <TabItem Name="TabPacking" Header="梱包" IsEnabled="False"
-                     metro:ControlsHelper.HeaderFontSize="32">
+                     metro:HeaderedControlHelper.HeaderFontSize="32">
                 <DockPanel Name="packingPage">
                     <Button DockPanel.Dock="Top" Content="変更" HorizontalAlignment="Right" FontSize="20" Click="ChangeRegistorButton_Click" Height="Auto"/>
                     <StackPanel Orientation="Vertical">
