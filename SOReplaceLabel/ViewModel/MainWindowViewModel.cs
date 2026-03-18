@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -223,6 +223,7 @@ namespace SOReplaceLabel.ViewModel
         private void CreateSOLabelPrinter()
         {
             _SOLabelPrinter = new SOReplaceLabelLib.SOLabelPrinter(WatchFilePath);
+            _SOLabelPrinter.PortName = Properties.Settings.Default.PortName;
 
             //ログメッセージ追加通知イベント
             _SOLabelPrinter.NotifyLogMessage += (s, e) =>

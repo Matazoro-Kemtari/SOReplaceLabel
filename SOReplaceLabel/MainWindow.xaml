@@ -1,4 +1,4 @@
-﻿<metro:MetroWindow 
+<metro:MetroWindow 
     x:Class="SOReplaceLabel.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -33,7 +33,7 @@
                 Name="CheckFilePath"
                 Margin="3"
                 IsReadOnly="True" TextWrapping="Wrap"
-                Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
                 materialDesign:HintAssist.Hint="変更状態監視ファイル"
                 Text= "{Binding WatchFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </DockPanel>
@@ -48,7 +48,7 @@
             <TextBox
                 Name="LabelText" Grid.Row="2" Margin="3"     
                 IsReadOnly="True"
-                Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
                 materialDesign:HintAssist.Hint="ラベルテキスト"
                 materialDesign:HintAssist.FloatingScale="0.4"
                 FontSize="36" FontWeight="Bold"

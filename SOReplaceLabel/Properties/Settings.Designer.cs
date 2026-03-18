@@ -34,5 +34,17 @@ namespace SOReplaceLabel.Properties {
                 this["WatchFilePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("BT:00:11:62:60:39:8C")]
+        public string PortName {
+            get {
+                return ((string)(this["PortName"]));
+            }
+            set {
+                this["PortName"] = value;
+            }
+        }
     }
 }

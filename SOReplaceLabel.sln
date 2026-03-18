@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11527.330
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceLabel", "SOReplaceLabel\SOReplaceLabel.csproj", "{7D16747C-241B-4EE5-B6FD-0560CE510DDA}"
 EndProject
@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfMvvm", "WpfMVVM\WpfMvvm.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceLabelLib", "SOReplaceLabelLib\SOReplaceLabelLib.csproj", "{447F03C2-4371-403B-B0F0-D2FE656A87D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log", "Log\Log.csproj", "{9BEACC49-B558-4B8D-B087-74F41B1CBACB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackingMethodTeacher", "PackingMethodTeacher\PackingMethodTeacher.csproj", "{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceLabelLibTests", "SOReplaceLabelLibTests\SOReplaceLabelLibTests.csproj", "{2530939D-86D4-4844-BDE6-C48A86904D58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +31,14 @@ Global
 		{447F03C2-4371-403B-B0F0-D2FE656A87D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{447F03C2-4371-403B-B0F0-D2FE656A87D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{447F03C2-4371-403B-B0F0-D2FE656A87D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9BEACC49-B558-4B8D-B087-74F41B1CBACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BEACC49-B558-4B8D-B087-74F41B1CBACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9BEACC49-B558-4B8D-B087-74F41B1CBACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9BEACC49-B558-4B8D-B087-74F41B1CBACB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2530939D-86D4-4844-BDE6-C48A86904D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2530939D-86D4-4844-BDE6-C48A86904D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2530939D-86D4-4844-BDE6-C48A86904D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2530939D-86D4-4844-BDE6-C48A86904D58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

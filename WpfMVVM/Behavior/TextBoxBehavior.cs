@@ -1,4 +1,4 @@
-﻿namespace WpfMvvm.Behavior
+namespace WpfMvvm.Behavior
 {
     /// <summary>
     /// 添付ビヘイビア

@@ -1,4 +1,4 @@
-﻿namespace WpfMvvm.Behavior
+namespace WpfMvvm.Behavior
 {
     public static partial class DataGridBehavior
     {
