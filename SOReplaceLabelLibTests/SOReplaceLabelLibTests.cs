@@ -6,7 +6,7 @@ namespace SOReplaceLabelLibTests;
 public sealed class SOReplaceLabelLibTests
 {
     [TestMethod]
-    public void TestMethod1()
+    public void 正常系_ラベルが印字されること()
     {
         var watchFilePath = Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,

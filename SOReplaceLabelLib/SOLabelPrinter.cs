@@ -272,9 +272,6 @@ public class SOLabelPrinter : INotifyPropertyChanged
                     case 0:
                         builder.AppendMultiple(data, 6, 5);
                         break;
-                    case 2:
-                        builder.AppendMultiple(data, 5, 5);
-                        break;
                     case 1:
                         builder.AppendMultiple(data,
                             line.Length switch
@@ -282,6 +279,9 @@ public class SOLabelPrinter : INotifyPropertyChanged
                                 > 6 => 2,
                                 _ => 4,
                             }, 3);
+                        break;
+                    case 2:
+                        builder.AppendMultiple(data, 5, 5);
                         break;
                     default:
                         builder.AppendMultiple(1, 1);
