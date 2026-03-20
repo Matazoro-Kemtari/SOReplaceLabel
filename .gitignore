@@ -273,6 +273,7 @@ README.pdf
 
 *.db
 *.csv
+commit_message.txt
 
 # ブラザーラベル
 .lbx
