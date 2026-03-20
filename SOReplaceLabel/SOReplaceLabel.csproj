@@ -10,9 +10,7 @@
 		<Title>SOReplaceLabel</Title>
 		<Company></Company>
 		<Product>SOReplaceLabel</Product>
-		<AssemblyVersion>1.2.1.0</AssemblyVersion>
-		<FileVersion>1.2.1.0</FileVersion>
-		<Version>1.2.1.0</Version>
+		<Version>0.2.1.0</Version>
 		<NeutralLanguage>ja-JP</NeutralLanguage>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
