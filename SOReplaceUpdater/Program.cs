@@ -16,6 +16,8 @@ namespace SOReplaceUpdater
             if (args.Length < 3)
             {
                 Console.WriteLine("Usage: SOReplaceUpdater.exe <downloadUrl> <installDir> <parentPid>");
+                Console.WriteLine("Please press any key.");
+                Console.ReadKey();
                 return;
             }
 

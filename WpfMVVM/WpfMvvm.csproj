@@ -7,8 +7,6 @@
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<LangVersion>Latest</LangVersion>
 
-		<AssemblyVersion>1.2.2.0</AssemblyVersion>
-		<FileVersion>1.2.2.0</FileVersion>
 		<Version>1.2.2.0</Version>
 		<Guid>9a30ef3d-785c-4eef-b9b3-d705840924fd</Guid>
 		<ComVisible>false</ComVisible>
