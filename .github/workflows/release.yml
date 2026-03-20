@@ -1,0 +1,52 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build SOReplaceLabel.sln -c Release
+
+      - name: Prepare Release Files
+        run: |
+          mkdir publish
+          copy SOReplaceLabel\bin\Release\net48\*.exe publish\
+          copy SOReplaceLabel\bin\Release\net48\*.dll publish\
+          copy SOReplaceLabel\bin\Release\net48\*.config publish\
+          # NotoSansJPなどのリソースがあればコピー
+          if (Test-Path "SOReplaceLabelLib\bin\Release\net48\NotoSansJP-Medium.ttf") {
+            copy SOReplaceLabelLib\bin\Release\net48\NotoSansJP-Medium.ttf publish\
+          }
+        shell: pwsh
+
+      - name: Create Zip
+        run: powershell Compress-Archive -Path publish\* -DestinationPath SOReplaceLabel.zip
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: SOReplaceLabel.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

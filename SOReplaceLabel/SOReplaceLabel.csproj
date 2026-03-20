@@ -10,8 +10,6 @@
 		<Title>SOReplaceLabel</Title>
 		<Company></Company>
 		<Product>SOReplaceLabel</Product>
-		<AssemblyVersion>1.2.1.0</AssemblyVersion>
-		<FileVersion>1.2.1.0</FileVersion>
 		<Version>1.2.1.0</Version>
 		<NeutralLanguage>ja-JP</NeutralLanguage>
 	</PropertyGroup>
@@ -32,7 +30,13 @@
 	<ItemGroup>
 		<ProjectReference Include="..\SOReplaceLabelLib\SOReplaceLabelLib.csproj" />
 		<ProjectReference Include="..\WpfMVVM\WpfMvvm.csproj" />
+		<ProjectReference Include="..\SOReplaceUpdater\SOReplaceUpdater.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
 	</ItemGroup>
+	<Target Name="CopyUpdater" AfterTargets="Build">
+		<Copy SourceFiles="$(SolutionDir)SOReplaceUpdater\bin\$(Configuration)\net48\SOReplaceUpdater.exe" DestinationFolder="$(OutputPath)" ContinueOnError="true" />
+	</Target>
 	<ItemGroup>
 		<PackageReference Include="MahApps.Metro" Version="2.4.11" />
 		<PackageReference Include="MaterialDesignColors" Version="5.2.1" />
