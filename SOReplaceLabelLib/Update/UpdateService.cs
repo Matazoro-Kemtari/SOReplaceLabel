@@ -82,7 +82,7 @@ namespace SOReplaceLabelLib.Update
             var psi = new ProcessStartInfo
             {
                 FileName = updaterPath,
-                Arguments = $"\"{downloadUrl}\" \"{installDir}\" {currentPid}",
+                Arguments = $"\"{downloadUrl}\" \"{installDir.TrimEnd('\\')}\" \"{currentPid}\"",
                 UseShellExecute = false,
                 CreateNoWindow = false
             };
