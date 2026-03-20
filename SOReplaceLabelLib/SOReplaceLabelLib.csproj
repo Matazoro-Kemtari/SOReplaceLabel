@@ -23,6 +23,7 @@
 	
 	<ItemGroup>
 		<Reference Include="System.Data.Linq" />
+		<Reference Include="System.Net.Http" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -44,6 +45,7 @@
 		<PackageReference Include="System.Data.SQLite.Core">
 			<Version>1.0.119</Version>
 		</PackageReference>
+		<PackageReference Include="System.Text.Json" Version="10.0.5" />
 	</ItemGroup>
 
 	<ItemGroup>
