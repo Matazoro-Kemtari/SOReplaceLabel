@@ -49,7 +49,7 @@ public class SOLabelPrinter : INotifyPropertyChanged
     /// プリンターの接続ポート名
     /// Bluetooth接続の場合、"BT:<デバイスアドレス>" を指定します。
     /// </summary>
-    public string PortName { get; set; } = "BT:Star Micronics";
+    public string PortName { get; set; } = "USBPRN:Star MCP31";
 
     /// <summary>
     /// ポート設定 (通常は空文字で問題ありません)
