@@ -34,24 +34,24 @@ namespace SOReplaceLabelLib.Update
 
         public async Task<GitHubRelease> GetLatestReleaseAsync()
         {
-            using (var client = new HttpClient())
+            using var client = new HttpClient();
+            
+            // GitHub API requires a User-Agent
+            client.DefaultRequestHeaders.Add("User-Agent", "SOReplaceLabel-Updater");
+
+            var url = $"https://api.github.com/repos/{_owner}/{_repo}/releases/latest";
+            try
             {
-                // GitHub API requires a User-Agent
-                client.DefaultRequestHeaders.Add("User-Agent", "SOReplaceLabel-Updater");
+                var response = await client.GetAsync(url).ConfigureAwait(false);
+                if (!response.IsSuccessStatusCode) return null;
 
-                var url = $"https://api.github.com/repos/{_owner}/{_repo}/releases/latest";
-                try
-                {
-                    var response = await client.GetAsync(url).ConfigureAwait(false);
-                    if (!response.IsSuccessStatusCode) return null;
-
-                    var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    return JsonSerializer.Deserialize<GitHubRelease>(json);
-                }
-                catch
-                {
-                    return null;
-                }
+                var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                return JsonSerializer.Deserialize<GitHubRelease>(json);
+            }
+            catch
+            {
+                // 何か問題だとしてもバージョン確認なのでスルーする
+                return null;
             }
         }
 

@@ -18,7 +18,6 @@ namespace SOReplaceLabel
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
             WpfMvvm.DispatcherHelper.Initialize();
-            MessageBox.Show("OOOO");
             // アップデートチェック (バックグラウンドで開始)
             _ = CheckForUpdatesAsync();
         }
