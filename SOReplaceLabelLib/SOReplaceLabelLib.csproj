@@ -6,8 +6,6 @@
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<LangVersion>Latest</LangVersion>
 
-		<AssemblyVersion>1.2.0.0</AssemblyVersion>
-		<FileVersion>1.2.0.0</FileVersion>
 		<Version>1.2.0.0</Version>
 		<Guid>447f03c2-4371-403b-b0f0-d2fe656a87d2</Guid>
 		<ComVisible>false</ComVisible>
@@ -23,6 +21,7 @@
 	
 	<ItemGroup>
 		<Reference Include="System.Data.Linq" />
+		<Reference Include="System.Net.Http" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -44,6 +43,7 @@
 		<PackageReference Include="System.Data.SQLite.Core">
 			<Version>1.0.119</Version>
 		</PackageReference>
+		<PackageReference Include="System.Text.Json" Version="10.0.5" />
 	</ItemGroup>
 
 	<ItemGroup>

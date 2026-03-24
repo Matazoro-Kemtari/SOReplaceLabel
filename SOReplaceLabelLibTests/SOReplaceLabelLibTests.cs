@@ -13,6 +13,6 @@ public sealed class SOReplaceLabelLibTests
             "__dummy__.txt");
         var soLabelPrinter = new SOLabelPrinter(watchFilePath);
 
-        soLabelPrinter.PrintLabel("987\n東京\n超特急");        
+        soLabelPrinter.PrintLabel("987\n東京\n超特急");
     }
 }
