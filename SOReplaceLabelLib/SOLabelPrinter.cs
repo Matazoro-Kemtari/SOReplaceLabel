@@ -74,14 +74,16 @@ public class SOLabelPrinter : INotifyPropertyChanged
         }
 
         //引数で渡したファイルの更新を監視する
-        watcher = new System.IO.FileSystemWatcher();
-        //監視するディレクトリとファイルを指定
-        watcher.Path = directroyName;
-        watcher.Filter = fileName;
-        //最終書き込み日時の変更が発生したときにイベントを通知させる
-        watcher.NotifyFilter = System.IO.NotifyFilters.LastWrite;
-        //サブディレクトリは監視しない
-        watcher.IncludeSubdirectories = false;
+        watcher = new System.IO.FileSystemWatcher
+        {
+            //監視するディレクトリとファイルを指定
+            Path = directroyName,
+            Filter = fileName,
+            //最終書き込み日時の変更が発生したときにイベントを通知させる
+            NotifyFilter = System.IO.NotifyFilters.LastWrite,
+            //サブディレクトリは監視しない
+            IncludeSubdirectories = false
+        };
         //最終変更時刻初期化
         LastChangedDateTime = DateTime.Now;
         ///変更検知イベント処理登録
@@ -180,7 +182,7 @@ public class SOLabelPrinter : INotifyPropertyChanged
         //ファイルウォッチャー動作状態変更
         IsFileWatching = true;
         //ログメッセージ通知
-        OnNotifyLogMessage(new string[] { "ファイル監視開始" });
+        OnNotifyLogMessage(["ファイル監視開始"]);
     }
 
     /// <summary>
@@ -191,7 +193,7 @@ public class SOLabelPrinter : INotifyPropertyChanged
         //ファイルウォッチャー動作状態変更
         IsFileWatching = false;
         //ログメッセージ通知
-        OnNotifyLogMessage(new string[] { "ファイル監視終了" });
+        OnNotifyLogMessage(["ファイル監視終了"]);
     }
 
     /// <summary>
@@ -215,11 +217,11 @@ public class SOLabelPrinter : INotifyPropertyChanged
         var (readresult, shopOrderTexts) = Data.ShopOrderReader.Read(e.FullPath);
         if (!readresult)
         {
-            OnNotifyLogMessage(new string[] { "【読込結果】", "テキストが読み込めませんでした" });
+            OnNotifyLogMessage(["【読込結果】", "テキストが読み込めませんでした"]);
             return;
         }
         //読取結果をログ表示
-        OnNotifyLogMessage(new string[] { "【読込結果】" }.Concat(shopOrderTexts.GetTextsWithColumnNumber()).ToList());
+        OnNotifyLogMessage(["【読込結果】", .. shopOrderTexts.GetTextsWithColumnNumber()]);
 
         //ラベル出力用テキスト作成
         var labelText = shopOrderTexts.GetLabelLineTexts();
@@ -260,7 +262,7 @@ public class SOLabelPrinter : INotifyPropertyChanged
 
             builder.AppendFontStyle(FontStyleType.A);
 
-            var setLines = labelText.Split(new[] { "\r\n", "\n", "\r" }, StringSplitOptions.None);
+            var setLines = labelText.Split(["\r\n", "\n", "\r"], StringSplitOptions.None);
             for (int i = 0; i < setLines.Length; i++)
             {
                 var line = setLines[i];
@@ -276,7 +278,7 @@ public class SOLabelPrinter : INotifyPropertyChanged
                         builder.AppendMultiple(data,
                             line.Length switch
                             {
-                                > 6 => 2,
+                                > 5 => 2,
                                 _ => 4,
                             }, 3);
                         break;
@@ -302,7 +304,7 @@ public class SOLabelPrinter : INotifyPropertyChanged
             byte[] commands2 = builder.Commands;
             port.WritePort(commands2, 0, (uint)commands2.Length);
 
-            OnNotifyLogMessage(new[] { "印刷成功: " + PortName });
+            OnNotifyLogMessage(["印刷成功: " + PortName]);
         }
         catch (PortException ex)
         {
