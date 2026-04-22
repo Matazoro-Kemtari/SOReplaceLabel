@@ -37,6 +37,15 @@ namespace SOReplaceLabel.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.wadass.com/release-publisher/app-release-data/soreplacelabel-update/version.json")]
+        public string UpdateVersionUrl {
+            get {
+                return ((string)(this["UpdateVersionUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("USBPRN:Star MCP31")]
         public string PortName {
             get {

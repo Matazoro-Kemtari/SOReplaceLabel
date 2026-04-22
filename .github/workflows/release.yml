@@ -50,3 +50,23 @@ jobs:
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Version File
+        run: |
+          # 最新バージョン情報を生成 (タグ名から 'v' を取り除いたものを設定)
+          $tag = "${{ github.ref_name }}".TrimStart('v')
+          $json = @{
+            latestVersion = $tag
+            downloadUrl = "http://www.wadass.com/release-publisher/app-release-data/soreplacelabel-update/SOReplaceLabel.zip"
+          } | ConvertTo-Json
+          $json | Out-File -FilePath publish\soreplacelabel-version.json -Encoding utf8
+        shell: pwsh
+
+      - name: Deploy to Web Server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./publish/
+          server-dir: /home/app-release-data/soreplacelabel-update/
