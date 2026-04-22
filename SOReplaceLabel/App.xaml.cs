@@ -24,7 +24,7 @@ namespace SOReplaceLabel
                 var assembly = System.Reflection.Assembly.GetExecutingAssembly();
                 var currentVersion = assembly.GetName().Version.ToString();
 
-                var updateService = new SOReplaceLabelLib.Update.UpdateService("http://www.wadass.com/release-publisher/app-release-data/soreplacelabel-update/version.json");
+                var updateService = new SOReplaceLabelLib.Update.UpdateService(SOReplaceLabel.Properties.Settings.Default.UpdateVersionUrl);
 
                 var info = await updateService.GetLatestVersionAsync().ConfigureAwait(false);
                 if (info != null && updateService.IsNewerVersion(currentVersion, info.LatestVersion))
