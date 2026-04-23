@@ -675,6 +675,5 @@ public record PostalCode(string High, string Low)
 - Modern C#（C#14 / .NET10 スタイル）を前提表現で書く
 - Primary Constructor / record class / Collection Expression / required を使用する
 - switch 式・ラムダ式・式形式メンバを優先
-- ThrowIfNull を使用し null チェックを簡潔に
 - UseCase パターンと命名規約を遵守
 - 非同期は async/await を標準にする
