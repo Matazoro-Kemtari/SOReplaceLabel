@@ -41,12 +41,15 @@ jobs:
         shell: pwsh
 
       - name: Create Zip
-        run: powershell Compress-Archive -Path publish\* -DestinationPath SOReplaceLabel.zip
+        run: |
+          mkdir deploy
+          powershell Compress-Archive -Path publish\* -DestinationPath deploy/SOReplaceLabel.zip
+        shell: pwsh
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: SOReplaceLabel.zip
+          files: deploy/SOReplaceLabel.zip
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -59,7 +62,7 @@ jobs:
             latestVersion = $tag
             downloadUrl = "http://www.wadass.com/release-publisher/app-release-data/soreplacelabel-update/SOReplaceLabel.zip"
           } | ConvertTo-Json
-          $json | Out-File -FilePath publish\soreplacelabel-version.json -Encoding utf8
+          $json | Out-File -FilePath deploy\version.json -Encoding utf8
         shell: pwsh
 
       - name: Deploy to Web Server
@@ -68,5 +71,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./publish/
-          server-dir: /home/app-release-data/soreplacelabel-update/
+          local-dir: ./deploy/
+          server-dir: /app-release-data/soreplacelabel-update/
