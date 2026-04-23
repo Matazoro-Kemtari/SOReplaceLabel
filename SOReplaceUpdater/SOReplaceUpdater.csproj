@@ -3,6 +3,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net48</TargetFramework>
     <LangVersion>Latest</LangVersion>
+    <Nullable>enable</Nullable>
     <Title>SOReplaceUpdater</Title>
     <Company></Company>
     <Product>SOReplaceUpdater</Product>
@@ -11,6 +12,10 @@
     <PlatformTarget>x64</PlatformTarget>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="SOReplaceUpdaterTests" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Net.Http" />
