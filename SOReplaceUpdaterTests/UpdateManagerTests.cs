@@ -9,7 +9,7 @@ using SOReplaceUpdater;
 namespace SOReplaceUpdaterTests;
 
 [TestClass]
-public class SOReplaceUpdaterTests
+public class UpdateManagerTests
 {
     private string? _testRoot;
     private string? _installDir;
