@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
@@ -13,7 +12,7 @@ namespace SOReplaceLabelLib;
 /// <summary>
 /// SO読込、ラベルプリンタ制御クラス
 /// </summary>
-public class SOLabelPrinter : INotifyPropertyChanged
+public class SOLabelPrinter : INotifyPropertyChanged, IDisposable
 {
     /// <summary>
     /// ファイルウオッチャー
@@ -134,6 +133,11 @@ public class SOLabelPrinter : INotifyPropertyChanged
     /// </summary>
     [field: NonSerialized]
     public event EventHandler<NotifyEventArgs<IList<string>>> NotifyLogMessage;
+
+    public void Dispose()
+    {
+        watcher.Dispose();
+    }
 
     /// <summary>
     /// NotifyLogMessageイベントを発生させる

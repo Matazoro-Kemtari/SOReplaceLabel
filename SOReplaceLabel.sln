@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceLabelLibTests", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceUpdater", "SOReplaceUpdater\SOReplaceUpdater.csproj", "{60154F15-6620-4E5D-A8F5-654C81AB9D3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceUpdaterTests", "SOReplaceUpdaterTests\SOReplaceUpdaterTests.csproj", "{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,18 @@ Global
 		{60154F15-6620-4E5D-A8F5-654C81AB9D3A}.Release|x64.Build.0 = Release|Any CPU
 		{60154F15-6620-4E5D-A8F5-654C81AB9D3A}.Release|x86.ActiveCfg = Release|Any CPU
 		{60154F15-6620-4E5D-A8F5-654C81AB9D3A}.Release|x86.Build.0 = Release|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Debug|x64.Build.0 = Debug|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Debug|x86.Build.0 = Debug|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Release|x64.Build.0 = Release|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
