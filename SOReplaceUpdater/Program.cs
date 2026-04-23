@@ -29,7 +29,7 @@ public class Program
             return;
         }
 
-        var manager = new UpdateManager();
+        using var manager = new UpdateManager();
         try
         {
             await manager.RunUpdateAsync(downloadUrl, installDir, parentPid);
@@ -43,10 +43,19 @@ public class Program
     }
 }
 
-internal class UpdateManager(HttpClient? httpClient = null, string? tempRoot = null)
+internal class UpdateManager(HttpClient? httpClient = null, string? tempRoot = null) : IDisposable
 {
     private readonly HttpClient _httpClient = httpClient ?? new HttpClient();
     private readonly string _tempRoot = tempRoot ?? Path.Combine(Path.GetTempPath(), "SOReplaceLabel_Update");
+    private readonly bool _ownsClient = httpClient == null;
+
+    public void Dispose()
+    {
+        if (_ownsClient)
+        {
+            _httpClient.Dispose();
+        }
+    }
 
     internal async Task RunUpdateAsync(string downloadUrl, string installDir, int parentPid, bool restart = true)
     {
@@ -71,13 +80,13 @@ internal class UpdateManager(HttpClient? httpClient = null, string? tempRoot = n
         string extractDir = Path.Combine(_tempRoot, "extract");
         string backupDir = Path.Combine(_tempRoot, "backup");
 
-        if (Directory.Exists(_tempRoot)) Directory.Delete(_tempRoot, true);
+        if (Directory.Exists(_tempRoot)) Retry(() => Directory.Delete(_tempRoot, true), 5, 500);
         Directory.CreateDirectory(_tempRoot);
         Directory.CreateDirectory(extractDir);
 
         // 2. 最新版をダウンロード
         Console.WriteLine("Downloading update...");
-        var response = await _httpClient.GetAsync(downloadUrl);
+        using var response = await _httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead);
         response.EnsureSuccessStatusCode();
         using (var fs = new FileStream(zipPath, FileMode.Create))
         {
@@ -90,7 +99,7 @@ internal class UpdateManager(HttpClient? httpClient = null, string? tempRoot = n
 
         // 4. バックアップの作成
         Console.WriteLine("Creating backup...");
-        if (Directory.Exists(backupDir)) Directory.Delete(backupDir, true);
+        if (Directory.Exists(backupDir)) Retry(() => Directory.Delete(backupDir, true), 5, 500);
         Directory.CreateDirectory(backupDir);
         // 既存のバックアップフォルダとアップデーター自体は除外する
         CopyAll(installDir, backupDir, excludePatterns: ["backup", "SOReplaceUpdater.exe"]);
@@ -105,7 +114,7 @@ internal class UpdateManager(HttpClient? httpClient = null, string? tempRoot = n
             // 5.5 1世代残すためにインストールディレクトリにバックアップを配置
             Console.WriteLine("Preserving previous version...");
             string persistentBackupDir = Path.Combine(installDir, "backup");
-            if (Directory.Exists(persistentBackupDir)) Directory.Delete(persistentBackupDir, true);
+            if (Directory.Exists(persistentBackupDir)) Retry(() => Directory.Delete(persistentBackupDir, true), 5, 500);
             Directory.CreateDirectory(persistentBackupDir);
             CopyAll(backupDir, persistentBackupDir);
         }
@@ -161,7 +170,8 @@ internal class UpdateManager(HttpClient? httpClient = null, string? tempRoot = n
             }
 
             var dest = Path.Combine(target, name);
-            CopyAll(dir, dest, excludePatterns);
+            // サブディレクトリのコピー時には除外設定を引き継がない（ルートのみを対象とする）
+            CopyAll(dir, dest, null);
         }
     }
 

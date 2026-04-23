@@ -67,7 +67,7 @@ public class SOReplaceUpdaterTests
         ZipFile.CreateFromDirectory(sourceDir, zipPath);
         byte[] zipBytes = File.ReadAllBytes(zipPath);
 
-        var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+        var handlerMock = new Mock<HttpMessageHandler>();
         handlerMock
            .Protected()
            .Setup<Task<HttpResponseMessage>>(
@@ -82,8 +82,8 @@ public class SOReplaceUpdaterTests
            })
            .Verifiable();
 
-        var httpClient = new HttpClient(handlerMock.Object);
-        var manager = new UpdateManager(httpClient, _tempDir);
+        using var httpClient = new HttpClient(handlerMock.Object);
+        using var manager = new UpdateManager(httpClient, _tempDir);
 
         // Act
         await manager.RunUpdateAsync("http://example.com/update.zip", _installDir, -1, restart: false);
@@ -116,6 +116,10 @@ public class SOReplaceUpdaterTests
         File.WriteAllText(Path.Combine(source, "Exclude.exe"), "Exclude");
         File.WriteAllText(Path.Combine(source, "SubDir", "KeepInSub.txt"), "KeepInSub");
 
+        // サブディレクトリ内の同名アイテム（これらは除外されないはず）
+        Directory.CreateDirectory(Path.Combine(source, "SubDir", "ExcludeDir"));
+        File.WriteAllText(Path.Combine(source, "SubDir", "Exclude.exe"), "Sub Exclude");
+
         var manager = new UpdateManager();
 
         // Act
@@ -124,7 +128,13 @@ public class SOReplaceUpdaterTests
         // Assert
         File.Exists(Path.Combine(target, "Keep.txt")).ShouldBeTrue();
         File.Exists(Path.Combine(target, "SubDir", "KeepInSub.txt")).ShouldBeTrue();
+
+        // ルートのアイテムは除外されていること
         File.Exists(Path.Combine(target, "Exclude.exe")).ShouldBeFalse();
         Directory.Exists(Path.Combine(target, "ExcludeDir")).ShouldBeFalse();
+
+        // サブディレクトリ内の同名アイテムは除外されずにコピーされていること
+        File.Exists(Path.Combine(target, "SubDir", "Exclude.exe")).ShouldBeTrue();
+        Directory.Exists(Path.Combine(target, "SubDir", "ExcludeDir")).ShouldBeTrue();
     }
 }
