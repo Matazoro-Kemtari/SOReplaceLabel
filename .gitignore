@@ -254,6 +254,8 @@ ehthumbs.db
 #PlantUML画像出力用フォルダ
 out/
 
+**/*.pubxml
+
 #Asciidoc出力のPDFファイル
 Asciidocs/**/*.pdf
 
