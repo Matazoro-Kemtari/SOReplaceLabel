@@ -12,7 +12,7 @@ namespace SOReplaceLabel.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "18.8.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -37,19 +37,20 @@ namespace SOReplaceLabel.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.wadass.com/release-publisher/app-release-data/soreplacelabel-update/version.json")]
-        public string UpdateVersionUrl {
+        [global::System.Configuration.DefaultSettingValueAttribute("USBPRN:Star MCP31")]
+        public string PortName {
             get {
-                return ((string)(this["UpdateVersionUrl"]));
+                return ((string)(this["PortName"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("USBPRN:Star MCP31")]
-        public string PortName {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.wadass.com/release-publisher/app-release-data/soreplacelabel-update/ve" +
+            "rsion.json")]
+        public string UpdateVersionUrl {
             get {
-                return ((string)(this["PortName"]));
+                return ((string)(this["UpdateVersionUrl"]));
             }
         }
     }

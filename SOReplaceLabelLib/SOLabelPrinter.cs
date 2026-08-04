@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
@@ -270,29 +271,32 @@ public class SOLabelPrinter : INotifyPropertyChanged, IDisposable
             for (int i = 0; i < setLines.Length; i++)
             {
                 var line = setLines[i];
-                if (string.IsNullOrWhiteSpace(line)) continue;
+
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    continue;
+                }
+
+                var maxWidth = i switch
+                {
+                    0 => 6,
+                    1 => 4,
+                    2 => 5,
+                    _ => 2,
+                };
+                var width = GetOptimalWidthMultiple(line, maxWidth);
+
+                var height = i switch
+                {
+                    0 => 5,
+                    1 => 3,
+                    2 => 5,
+                    _ => 2
+                };
 
                 var data = Encoding.UTF8.GetBytes(line + "\n");
-                switch (i)
-                {
-                    case 0:
-                        builder.AppendMultiple(data, 6, 5);
-                        break;
-                    case 1:
-                        builder.AppendMultiple(data,
-                            line.Length switch
-                            {
-                                > 5 => 2,
-                                _ => 4,
-                            }, 3);
-                        break;
-                    case 2:
-                        builder.AppendMultiple(data, 5, 5);
-                        break;
-                    default:
-                        builder.AppendMultiple(1, 1);
-                        break;
-                }
+
+                builder.AppendMultiple(data, width, height);
             }
 
             // 文字サイズと位置を元に戻す
@@ -337,5 +341,47 @@ public class SOLabelPrinter : INotifyPropertyChanged, IDisposable
         {
             Factory.I.ReleasePort(port);
         }
+    }
+
+    /// <summary>
+    /// 指定した文字列が印字領域からはみ出さない最大の横倍率を取得します。
+    /// 半角文字を1桁、全角文字を2桁として計算します。
+    /// </summary>
+    /// <param name="text">印刷する文字列</param>
+    /// <param name="maxWidth">最大横倍率</param>
+    /// <param name="printableColumns">倍率1倍時の半角文字の最大桁数</param>
+    /// <returns>横倍率（1～maxWidth）</returns>
+    private static int GetOptimalWidthMultiple(
+        string text,
+        int maxWidth = 6,
+        int printableColumns = 48)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            return maxWidth;
+        }
+
+        // 半角=1、全角=2として文字幅を計算
+        int columns = text.Sum(c => IsHalfWidth(c) ? 1 : 2);
+
+        // 1倍で使用する幅を基準に、入る最大倍率を探す
+        for (int multiple = maxWidth; multiple >= 1; multiple--)
+        {
+            if (columns * multiple <= printableColumns)
+            {
+                return multiple;
+            }
+        }
+
+        return 1;
+    }
+
+    /// <summary>
+    /// 半角文字かどうかを判定します。
+    /// </summary>
+    private static bool IsHalfWidth(char c)
+    {
+        return c <= '\u007F'
+            || (c >= '\uFF61' && c <= '\uFF9F');
     }
 }
