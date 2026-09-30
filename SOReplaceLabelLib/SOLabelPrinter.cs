@@ -351,7 +351,7 @@ public class SOLabelPrinter : INotifyPropertyChanged, IDisposable
     /// <param name="maxWidth">最大横倍率</param>
     /// <param name="printableColumns">倍率1倍時の半角文字の最大桁数</param>
     /// <returns>横倍率（1～maxWidth）</returns>
-    private static int GetOptimalWidthMultiple(
+    internal static int GetOptimalWidthMultiple(
         string text,
         int maxWidth = 6,
         int printableColumns = 48)
@@ -367,7 +367,7 @@ public class SOLabelPrinter : INotifyPropertyChanged, IDisposable
         // 1倍で使用する幅を基準に、入る最大倍率を探す
         for (int multiple = maxWidth; multiple >= 1; multiple--)
         {
-            if (columns * multiple <= printableColumns)
+            if (columns * multiple <= printableColumns - multiple)
             {
                 return multiple;
             }
@@ -379,7 +379,7 @@ public class SOLabelPrinter : INotifyPropertyChanged, IDisposable
     /// <summary>
     /// 半角文字かどうかを判定します。
     /// </summary>
-    private static bool IsHalfWidth(char c)
+    internal static bool IsHalfWidth(char c)
     {
         return c <= '\u007F'
             || (c >= '\uFF61' && c <= '\uFF9F');
