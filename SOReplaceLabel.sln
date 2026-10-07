@@ -7,11 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceLabel", "SOReplace
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfMvvm", "WpfMVVM\WpfMvvm.csproj", "{9A30EF3D-785C-4EEF-B9B3-D705840924FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceLabelLib", "SOReplaceLabelLib\SOReplaceLabelLib.csproj", "{447F03C2-4371-403B-B0F0-D2FE656A87D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.SOReplaceLabel.Application", "Wada.SOReplaceLabel.Application\Wada.SOReplaceLabel.Application.csproj", "{447F03C2-4371-403B-B0F0-D2FE656A87D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackingMethodTeacher", "PackingMethodTeacher\PackingMethodTeacher.csproj", "{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceLabelLibTests", "SOReplaceLabelLibTests\SOReplaceLabelLibTests.csproj", "{2530939D-86D4-4844-BDE6-C48A86904D58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.SOReplaceLabel.ApplicationTests", "Wada.SOReplaceLabel.ApplicationTests\Wada.SOReplaceLabel.ApplicationTests.csproj", "{2530939D-86D4-4844-BDE6-C48A86904D58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceUpdater", "SOReplaceUpdater\SOReplaceUpdater.csproj", "{60154F15-6620-4E5D-A8F5-654C81AB9D3A}"
 EndProject
@@ -65,18 +63,6 @@ Global
 		{447F03C2-4371-403B-B0F0-D2FE656A87D2}.Release|x64.Build.0 = Release|Any CPU
 		{447F03C2-4371-403B-B0F0-D2FE656A87D2}.Release|x86.ActiveCfg = Release|Any CPU
 		{447F03C2-4371-403B-B0F0-D2FE656A87D2}.Release|x86.Build.0 = Release|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Debug|x64.Build.0 = Debug|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Debug|x86.Build.0 = Debug|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Release|x64.ActiveCfg = Release|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Release|x64.Build.0 = Release|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Release|x86.ActiveCfg = Release|Any CPU
-		{D7D3C103-10B5-45A5-A980-EA13B4AC87E6}.Release|x86.Build.0 = Release|Any CPU
 		{2530939D-86D4-4844-BDE6-C48A86904D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2530939D-86D4-4844-BDE6-C48A86904D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2530939D-86D4-4844-BDE6-C48A86904D58}.Debug|x64.ActiveCfg = Debug|Any CPU

@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\SOReplaceLabelLib\SOReplaceLabelLib.csproj" />
+	  <ProjectReference Include="..\Wada.SOReplaceLabel.Application\Wada.SOReplaceLabel.Application.csproj" />
 	</ItemGroup>
 
 </Project>
