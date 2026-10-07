@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using Wada.SOReplaceLabel.Application;
 
 namespace SOReplaceLabel.ViewModel
 {
@@ -64,7 +65,7 @@ namespace SOReplaceLabel.ViewModel
         /// <summary>
         /// SO読込ラベルプリンタ制御クラス
         /// </summary>
-        private SOReplaceLabelLib.SOLabelPrinter _SOLabelPrinter;
+        private SOLabelPrinter _SOLabelPrinter;
 
         /// <summary>
         /// ログメッセージ
@@ -222,8 +223,10 @@ namespace SOReplaceLabel.ViewModel
         /// </summary>
         private void CreateSOLabelPrinter()
         {
-            _SOLabelPrinter = new SOReplaceLabelLib.SOLabelPrinter(WatchFilePath);
-            _SOLabelPrinter.PortName = Properties.Settings.Default.PortName;
+            _SOLabelPrinter = new SOLabelPrinter(WatchFilePath)
+            {
+                PortName = Properties.Settings.Default.PortName
+            };
 
             //ログメッセージ追加通知イベント
             _SOLabelPrinter.NotifyLogMessage += (s, e) =>

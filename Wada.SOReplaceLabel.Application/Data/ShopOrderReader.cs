@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace SOReplaceLabelLib.Data;
+namespace Wada.SOReplaceLabel.Application.Data;
 
 public class ShopOrderReader
 {

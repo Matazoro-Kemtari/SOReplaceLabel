@@ -24,7 +24,7 @@ namespace SOReplaceLabel
                 var assembly = System.Reflection.Assembly.GetExecutingAssembly();
                 var currentVersion = assembly.GetName().Version.ToString();
 
-                var updateService = new SOReplaceLabelLib.Update.UpdateService(SOReplaceLabel.Properties.Settings.Default.UpdateVersionUrl);
+                var updateService = new Wada.SOReplaceLabel.Application.Update.UpdateService(SOReplaceLabel.Properties.Settings.Default.UpdateVersionUrl);
 
                 var info = await updateService.GetLatestVersionAsync().ConfigureAwait(false);
                 if (info != null && updateService.IsNewerVersion(currentVersion, info.LatestVersion))

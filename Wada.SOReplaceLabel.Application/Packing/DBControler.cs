@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SOReplaceLabelLib.Packing
+namespace Wada.SOReplaceLabel.Application.Packing
 {
     public class DBControler
     {

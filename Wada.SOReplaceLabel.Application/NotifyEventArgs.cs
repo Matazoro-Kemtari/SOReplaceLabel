@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SOReplaceLabelLib
+namespace Wada.SOReplaceLabel.Application
 {
     /// <summary>
     /// 独自の通知用オブジェクトを受け渡すイベント引数クラス

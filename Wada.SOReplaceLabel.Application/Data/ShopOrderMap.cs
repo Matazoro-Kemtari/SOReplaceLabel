@@ -1,6 +1,6 @@
 using CsvHelper.Configuration;
 
-namespace SOReplaceLabelLib.Data
+namespace Wada.SOReplaceLabel.Application.Data
 {
     /// <summary>
     /// ShopOrder.txt(TSVファイル）のマッピング設定

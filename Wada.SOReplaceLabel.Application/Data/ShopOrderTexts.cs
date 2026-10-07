@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SOReplaceLabelLib.Data
+namespace Wada.SOReplaceLabel.Application.Data
 {
     public class ShopOrderTexts : IEquatable<ShopOrderTexts>
     {

@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace SOReplaceLabelLib.Update;
+namespace Wada.SOReplaceLabel.Application.Update;
 
 // 汎用的なバージョン情報クラス
 public class VersionInfo

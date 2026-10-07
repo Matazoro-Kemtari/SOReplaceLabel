@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Linq.Mapping;
 
 
-namespace SOReplaceLabelLib.Data
+namespace Wada.SOReplaceLabel.Application.Data
 {
     [Table(Name = "parts_packings")]
     public class PartsPacking
