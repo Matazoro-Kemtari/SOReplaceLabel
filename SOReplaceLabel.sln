@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOReplaceUpdaterTests", "SO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDLTestMonitor", "TDLTestMonitor\TDLTestMonitor.csproj", "{94091EF0-F2C9-4377-A58C-EBEFF2CFFD70}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{95B3D99A-942C-45ED-81CA-2374981BB10E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "reference", "reference", "{8C927499-6440-4603-9A00-12A6AEB9CE5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -114,6 +118,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{60154F15-6620-4E5D-A8F5-654C81AB9D3A} = {95B3D99A-942C-45ED-81CA-2374981BB10E}
+		{ECFD6503-389E-4D2E-B696-D4F08E3E98EE} = {95B3D99A-942C-45ED-81CA-2374981BB10E}
+		{94091EF0-F2C9-4377-A58C-EBEFF2CFFD70} = {8C927499-6440-4603-9A00-12A6AEB9CE5A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4FC73EAC-3A83-4DF6-BFD8-6DE08D884B79}
