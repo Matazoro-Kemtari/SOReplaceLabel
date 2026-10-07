@@ -1,6 +1,6 @@
-using Wada.SOReplaceLabel.Application;
+using Wada.SOReplaceLabel.Application.LabelPrinter;
 
-namespace Wada.SOReplaceLabel.ApplicationTests;
+namespace Wada.SOReplaceLabel.ApplicationTests.LabelPrinter;
 
 [TestClass]
 public sealed class SOReplaceLabelLibTests

@@ -7,7 +7,7 @@ using System.Threading;
 using StarMicronics.StarIO;
 using StarMicronics.StarIOExtension;
 
-namespace Wada.SOReplaceLabel.Application;
+namespace Wada.SOReplaceLabel.Application.LabelPrinter;
 
 /// <summary>
 /// SO読込、ラベルプリンタ制御クラス
