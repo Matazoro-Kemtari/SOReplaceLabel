@@ -9,27 +9,29 @@
 		<Version>1.2.0.0</Version>
 		<Guid>447f03c2-4371-403b-b0f0-d2fe656a87d2</Guid>
 		<ComVisible>false</ComVisible>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
-	
+
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<RunCodeAnalysis>true</RunCodeAnalysis>
 	</PropertyGroup>
-	
+
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
 		<DebugType>none</DebugType>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<Reference Include="System.Data.Linq" />
 		<Reference Include="System.Net.Http" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<None Update="NotoSansJP-Medium.ttf">
-		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<PackageReference Include="CsvHelper">
 			<Version>33.0.1</Version>
