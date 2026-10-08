@@ -54,4 +54,8 @@
 		</AssemblyAttribute>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Wada.SOReplaceLabel.Domain\Wada.SOReplaceLabel.Domain.csproj" />
+	</ItemGroup>
+
 </Project>
