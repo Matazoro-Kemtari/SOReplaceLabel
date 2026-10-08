@@ -10,21 +10,8 @@ public class LabelPrintContent(
     ShortageSign shortage)
 {
     public AircraftModelCode AircraftModel { get; } = aircraftModel ?? throw new ArgumentNullException(nameof(aircraftModel));
-    public string LeftQuantity { get; } = leftQuantity ?? string.Empty;
-    public string RightQuantity { get; } = rightQuantity ?? string.Empty;
+    public int LeftQuantity { get; } = int.TryParse(leftQuantity, out var result) ? result : 0;
+    public int RightQuantity { get; } = int.TryParse(rightQuantity, out var result) ? result : 0;
     public string Destination { get; } = destination ?? string.Empty;
     public ShortageSign Shortage { get; } = shortage ?? throw new ArgumentNullException(nameof(shortage));
-
-    // 印字用にフォーマットされた文字列を取得（プリンターへの送信形式）
-    public string[] ToPrintArray()
-    {
-        return
-        [
-            AircraftModel.PrintValue,
-            LeftQuantity,
-            RightQuantity,
-            Destination,
-            Shortage.PrintValue,
-        ];
-    }
 }
