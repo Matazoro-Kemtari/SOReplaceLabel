@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.SOReplaceLabel.Domain"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.SOReplaceLabel.DomainTests", "Wada.SOReplaceLabel.DomainTests\Wada.SOReplaceLabel.DomainTests.csproj", "{82A886BD-7D26-490A-A72C-004638932F3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wada.SOReplaceLabel.Infrastructure", "Wada.SOReplaceLabel.Infrastructure\Wada.SOReplaceLabel.Infrastructure.csproj", "{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,18 @@ Global
 		{82A886BD-7D26-490A-A72C-004638932F3C}.Release|x64.Build.0 = Release|Any CPU
 		{82A886BD-7D26-490A-A72C-004638932F3C}.Release|x86.ActiveCfg = Release|Any CPU
 		{82A886BD-7D26-490A-A72C-004638932F3C}.Release|x86.Build.0 = Release|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Debug|x64.Build.0 = Debug|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Debug|x86.Build.0 = Debug|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Release|x64.ActiveCfg = Release|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Release|x64.Build.0 = Release|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Release|x86.ActiveCfg = Release|Any CPU
+		{CD8D1B2E-8640-430A-8F76-D2FF49F1B4BB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
