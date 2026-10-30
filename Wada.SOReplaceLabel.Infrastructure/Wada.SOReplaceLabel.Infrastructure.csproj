@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<LangVersion>Latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="StarMicronics.StarIO.Desktop" Version="2.12.0" />
+		<PackageReference Include="StarMicronics.StarIODeviceSetting.Desktop" Version="1.0.0" />
+		<PackageReference Include="StarMicronics.StarIOExtension.Desktop" Version="1.10.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Wada.SOReplaceLabel.Application\Wada.SOReplaceLabel.Application.csproj" />
+	  <ProjectReference Include="..\Wada.SOReplaceLabel.Domain\Wada.SOReplaceLabel.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

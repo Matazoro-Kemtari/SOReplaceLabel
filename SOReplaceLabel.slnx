@@ -1,0 +1,21 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/reference/">
+    <Project Path="TDLTestMonitor/TDLTestMonitor.csproj" />
+  </Folder>
+  <Folder Name="/Utilities/">
+    <Project Path="SOReplaceUpdater/SOReplaceUpdater.csproj" />
+    <Project Path="SOReplaceUpdaterTests/SOReplaceUpdaterTests.csproj" />
+  </Folder>
+  <Project Path="SOReplaceLabel/SOReplaceLabel.csproj" />
+  <Project Path="Wada.SOReplaceLabel.Application/Wada.SOReplaceLabel.Application.csproj" />
+  <Project Path="Wada.SOReplaceLabel.ApplicationTests/Wada.SOReplaceLabel.ApplicationTests.csproj" />
+  <Project Path="Wada.SOReplaceLabel.Domain/Wada.SOReplaceLabel.Domain.csproj" />
+  <Project Path="Wada.SOReplaceLabel.DomainTests/Wada.SOReplaceLabel.DomainTests.csproj" />
+  <Project Path="Wada.SOReplaceLabel.Infrastructure/Wada.SOReplaceLabel.Infrastructure.csproj" />
+  <Project Path="Wada.SOReplaceLabel.Wpf/Wada.SOReplaceLabel.Wpf.csproj" />
+</Solution>
