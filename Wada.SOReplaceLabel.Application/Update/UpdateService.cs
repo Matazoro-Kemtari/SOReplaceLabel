@@ -1,10 +1,7 @@
-using System;
 using System.Diagnostics;
-using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Wada.SOReplaceLabel.Application.Update;
 
@@ -12,15 +9,15 @@ namespace Wada.SOReplaceLabel.Application.Update;
 public class VersionInfo
 {
     [JsonPropertyName("latestVersion")]
-    public string LatestVersion { get; set; }
+    public string LatestVersion { get; set; } = string.Empty;
     
     [JsonPropertyName("downloadUrl")]
-    public string DownloadUrl { get; set; }
+    public string DownloadUrl { get; set; } = string.Empty;
 }
 
 public class UpdateService(string versionUrl)
 {
-    public async Task<VersionInfo> GetLatestVersionAsync()
+    public async Task<VersionInfo?> GetLatestVersionAsync()
     {
         using var client = new HttpClient();
         

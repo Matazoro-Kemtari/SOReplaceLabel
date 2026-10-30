@@ -36,15 +36,6 @@
 		<PackageReference Include="CsvHelper">
 			<Version>33.0.1</Version>
 		</PackageReference>
-		<PackageReference Include="MahApps.Metro" Version="2.4.11" />
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="StarMicronics.StarIO.Desktop" Version="2.12.0" />
-		<PackageReference Include="StarMicronics.StarIODeviceSetting.Desktop" Version="1.0.0" />
-		<PackageReference Include="StarMicronics.StarIOExtension.Desktop" Version="1.10.0" />
-		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-		<PackageReference Include="System.Data.SQLite.Core">
-			<Version>1.0.119</Version>
-		</PackageReference>
 		<PackageReference Include="System.Text.Json" Version="10.0.5" />
 	</ItemGroup>
 

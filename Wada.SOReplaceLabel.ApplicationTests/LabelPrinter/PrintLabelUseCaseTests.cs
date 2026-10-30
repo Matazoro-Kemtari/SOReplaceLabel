@@ -49,8 +49,8 @@ public sealed class PrintLabelUseCaseTests
         labelPrinter.Verify(
             printer => printer.PrintAsync(It.Is<LabelPrintContent>(printContent =>
                 printContent.AircraftModel.PrintValue == "777" &&
-                printContent.LeftQuantity == "12" &&
-                printContent.RightQuantity == "34" &&
+                printContent.LeftQuantity == 12 &&
+                printContent.RightQuantity == 34 &&
                 printContent.Destination == "Tokyo" &&
                 printContent.Shortage.PrintValue == "欠品")),
             Times.Once);

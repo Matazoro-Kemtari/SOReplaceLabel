@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
@@ -27,26 +27,21 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Prism.DryIoc" Version="9.0.537" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Resource Include="label.ico" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Wada.SOReplaceLabel.Application\Wada.SOReplaceLabel.Application.csproj" />
-		<ProjectReference Include="..\WpfMVVM\WpfMvvm.csproj" />
+		<ProjectReference Include="..\Wada.SOReplaceLabel.Domain\Wada.SOReplaceLabel.Domain.csproj" />
+		<ProjectReference Include="..\Wada.SOReplaceLabel.Infrastructure\Wada.SOReplaceLabel.Infrastructure.csproj" />
+		<ProjectReference Include="..\Wada.SOReplaceLabel.Wpf\Wada.SOReplaceLabel.Wpf.csproj" />
 		<ProjectReference Include="..\SOReplaceUpdater\SOReplaceUpdater.csproj">
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="MahApps.Metro" Version="2.4.11" />
-		<PackageReference Include="MaterialDesignColors" Version="5.2.1" />
-		<PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
-		<PackageReference Include="MaterialDesignThemes.MahApps" Version="5.2.1" />
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-		<PackageReference Include="WindowsAPICodePack-Core" Version="1.1.2" />
-		<PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
 	</ItemGroup>
 
 	<Target Name="CopyUpdater" AfterTargets="Build">
