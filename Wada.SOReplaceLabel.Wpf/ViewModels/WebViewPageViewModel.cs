@@ -1,12 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reactive.Disposables;
 using System.Text.Json;
-using System.Windows;
-using Microsoft.Web.WebView2.Core;
-using Prism.Commands;
 using Prism.Mvvm;
 
 namespace Wada.SOReplaceLabel.Wpf.ViewModels;
@@ -18,53 +13,47 @@ public class WebViewPageViewModel : BindableBase, IDestructible
     /// <summary>
     /// レガシーな IE 向けシステムにおける ActiveX (Scripting.FileSystemObject) のファイル書き込み処理を模擬（Shim）するスクリプト。
     /// WebView2 (Chromium) では未サポートの FileSystemObject によるファイル出力をインターセプトし、
-    /// 内容をバッファリングして Close 時に window.chrome.webview.postMessage 経由で C# 側へ JSON 送信します。
+    /// 内容をキャメルケースのキー名付き JSON オブジェクトに変換して window.chrome.webview.postMessage 経由で C# 側へ送信します。
     /// </summary>
     private const string ActiveXShimScript = @"
 (function() {
-    if (window.__activeXShimInstalled)
-    {
-        console.log('Return immediately.', 'window.__activeXShimInstalled:', window.__activeXShimInstalled);
+    if (window.__activeXShimInstalled) {
         return;
     }
     window.__activeXShimInstalled = true;
 
-    const isMainFrame = window === window.top;
-    const location = window.location.href;
-    console.log(
-        'ActiveXShimScript installed.',
-        'isMainFrame:', isMainFrame,
-        'location:', location);
+    const KEYS = [
+        'factoryCode', 'sourceAircraftModel', 'partsNumber', 'idNo', 'barCode', 'productName',
+        'leftQuantity', 'rightQuantity', 'destination', 'registrantName', 'usingShop', 'responsibleShop',
+        'orderNumber', 'item', 'lotNumber', 'startUnitNumber', 'endUnitNumber', 'status',
+        'area', 'sequenceNumber', 'shop', 'completionFlag', 'sourceShortageSign', 'mnd', 'aletFlag'
+    ];
 
     window.ActiveXObject = function(progId) {
         if (progId !== 'Scripting.FileSystemObject') {
             throw new Error('ActiveXObject not supported in this environment: ' + progId);
         }
         return {
-            DeleteFile: function(path, force) {
-                console.log('DeleteFile called (ignored):', path, force);
-                // 何もしない（元々ファイル削除→再作成の準備動作なので不要）
+            DeleteFile: function() {
+                // ファイル削除は不要なため何もしない
             },
-            OpenTextFile: function(path, mode, create, format) {
-                console.log('OpenTextFile called:', path, mode, create, format);
-                var buffer = '';
+            OpenTextFile: function() {
+                var rawText = '';
                 return {
                     Write: function(text) {
-                        console.log('Write called:', text);
-                        buffer += text;
+                        rawText += text;
                     },
                     WriteLine: function(text) {
-                        console.log('WriteLine called:', text);
-                        buffer += text + '\n';
+                        rawText += text + '\n';
                     },
                     Close: function() {
-                        console.log('Close called, buffer length:', buffer.length);
-                        // ここでC#側にデータを送信する
                         try {
-                            window.chrome.webview.postMessage(
-                                JSON.stringify({ path: path, content: buffer })
-                            );
-                            console.log('postMessage called successfully.');
+                            var values = rawText.split('\t');
+                            var data = {};
+                            for (var i = 0; i < KEYS.length; i++) {
+                                data[KEYS[i]] = values[i] !== undefined ? values[i].trim() : '';
+                            }
+                            window.chrome.webview.postMessage(JSON.stringify(data));
                         } catch (e) {
                             console.error('postMessage failed:', e);
                         }
@@ -73,53 +62,6 @@ public class WebViewPageViewModel : BindableBase, IDestructible
             }
         };
     };
-})();";
-
-    /// <summary>
-    /// ドキュメント作成時に WebView2 の疎通・読み込み状態を確認するための診断用 Ping スクリプト。
-    /// ページ読み込み完了時に 1 回だけ現在の URL と __ping__: true を C# 側に postMessage します。
-    /// </summary>
-    private const string DiagnosticPingScript = @"
-(function(){
-    try {
-        if (window.__webview_ping_sent) return;
-        window.__webview_ping_sent = true;
-        if (window.chrome && window.chrome.webview && window.chrome.webview.postMessage) {
-            window.chrome.webview.postMessage(JSON.stringify({ __ping__: true, url: location.href }));
-            console.log('webview ping posted:', location.href);
-        } else {
-            console.log('webview ping: chrome.webview not available yet');
-        }
-    } catch(e) { console.error('webview ping error', e); }
-})();";
-
-    /// <summary>
-    /// ブラウザ内の console.log / info / warn / error / debug 出力をフックし、
-    /// 元のブラウザコンソールに出力しつつ C# 側へ __console__: true として postMessage 転送するデバッグ用スクリプト。
-    /// </summary>
-    private const string ConsoleOverrideScript = @"
-(function(){
-    try {
-        if (window.__console_overridden) return;
-        window.__console_overridden = true;
-        function sendConsole(level, args){
-            try {
-                var msg = '';
-                for (var i=0;i<args.length;i++){
-                    try { msg += (typeof args[i] === 'object' ? JSON.stringify(args[i]) : String(args[i])) + ' '; } catch(e){ msg += String(args[i]) + ' '; }
-                }
-                if (window.chrome && window.chrome.webview && window.chrome.webview.postMessage) {
-                    window.chrome.webview.postMessage(JSON.stringify({ __console__: true, level: level, message: msg.trim(), url: location.href }));
-                }
-            } catch(e) { }
-        }
-        var orig = { log: console.log, debug: console.debug, info: console.info, warn: console.warn, error: console.error };
-        console.log = function(){ sendConsole('log', arguments); orig.log.apply(console, arguments); };
-        console.debug = function(){ sendConsole('debug', arguments); orig.debug.apply(console, arguments); };
-        console.info = function(){ sendConsole('info', arguments); orig.info.apply(console, arguments); };
-        console.warn = function(){ sendConsole('warn', arguments); orig.warn.apply(console, arguments); };
-        console.error = function(){ sendConsole('error', arguments); orig.error.apply(console, arguments); };
-    } catch(e) { }
 })();";
 
     public async Task InitializeAsync(IWebView2Service webView2Service)
@@ -135,9 +77,6 @@ public class WebViewPageViewModel : BindableBase, IDestructible
 
         // スクリプト注入
         _webViewService.AddScriptOnDocumentCreated(ActiveXShimScript);
-        // TODO: 後で消す: ドキュメント作成時にホストへ到達確認用の ping メッセージを送るスクリプトを注入
-        //_webViewService.AddScriptOnDocumentCreated(DiagnosticPingScript);
-        //_webViewService.AddScriptOnDocumentCreated(ConsoleOverrideScript);
 
         // ナビゲート
         _webViewService.Navigate("https://ghsam095mgs.mhi.co.jp/KIT/Transit/Transit_PT.asp");
@@ -149,19 +88,20 @@ public class WebViewPageViewModel : BindableBase, IDestructible
 
         try
         {
-            var payload = JsonSerializer.Deserialize<ShopOrderPayload>(json);
-            if (payload?.content == null) return;
-
-            // ファイル書き込み
-            File.AppendAllText(@"C:\temp\ShopOrder.txt", payload.content + Environment.NewLine);
+            var options = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                PropertyNameCaseInsensitive = true
+            };
+            var payload = JsonSerializer.Deserialize<ShopOrderPayload>(json, options);
+            if (payload == null) return;
 
             // 印刷処理
-            //ProcessAndPrint(payload.content);
-
+            //ProcessAndPrint(payload);
         }
         catch (Exception ex)
         {
-            throw new NotImplementedException($"Error processing web message: {ex.Message}", ex);
+            throw new InvalidOperationException($"Error processing web message: {ex.Message}", ex);
         }
     }
 
@@ -179,9 +119,131 @@ public class WebViewPageViewModel : BindableBase, IDestructible
         Disposables.Dispose();
     }
 
-    private class ShopOrderPayload
+    public class ShopOrderPayload
     {
-        public string path { get; set; } = string.Empty;
-        public string content { get; set; } = string.Empty;
+        /// <summary>
+        /// 工場コード
+        /// </summary>
+        public string FactoryCode { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 機種
+        /// </summary>
+        public string SourceAircraftModel { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 部品番号
+        /// </summary>
+        public string PartsNumber { get; set; } = string.Empty;
+
+        /// <summary>
+        /// IDNo
+        /// </summary>
+        public string IDNo { get; set; } = string.Empty;
+
+        /// <summary>
+        /// バーコード
+        /// </summary>
+        public string BarCode { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string ProductName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 左個数
+        /// </summary>
+        public string LeftQuantity { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 右個数
+        /// </summary>
+        public string RightQuantity { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 送り先
+        /// </summary>
+        public string Destination { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 登録者ID
+        /// </summary>
+        public string RegistrantName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 使用ショップ
+        /// </summary>
+        public string UsingShop { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 責任ショップ
+        /// </summary>
+        public string ResponsibleShop { get; set; } = string.Empty;
+
+        /// <summary>
+        /// オーダー
+        /// </summary>
+        public string OrderNumber { get; set; } = string.Empty;
+
+        /// <summary>
+        /// アイテム
+        /// </summary>
+        public string Item { get; set; } = string.Empty;
+
+        /// <summary>
+        /// ロット
+        /// </summary>
+        public string LotNumber { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 開始号機
+        /// </summary>
+        public string StartUnitNumber { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 終了号機
+        /// </summary>
+        public string EndUnitNumber { get; set; } = string.Empty;
+
+        /// <summary>
+        /// ステータス
+        /// </summary>
+        public string Status { get; set; } = string.Empty;
+
+        /// <summary>
+        /// エリア
+        /// </summary>
+        public string Area { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 連番
+        /// </summary>
+        public string SequenceNumber { get; set; } = string.Empty;
+
+        /// <summary>
+        /// ショップ
+        /// </summary>
+        public string Shop { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 完了
+        /// </summary>
+        public string CompletionFlag { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 欠品サイン
+        /// </summary>
+        public string SourceShortageSign { get; set; } = string.Empty;
+
+        /// <summary>
+        /// MND
+        /// </summary>
+        public string MND { get; set; } = string.Empty;
+
+        /// <summary>
+        /// アラートフラグ
+        /// </summary>
+        public string AletFlag { get; set; } = string.Empty;
     }
 }
