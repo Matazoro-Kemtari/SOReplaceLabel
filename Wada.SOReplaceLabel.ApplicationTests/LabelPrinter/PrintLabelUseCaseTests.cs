@@ -12,40 +12,20 @@ public sealed class PrintLabelUseCaseTests
     [TestMethod]
     public async Task 正常系_変換したラベル内容をプリンターへ渡すこと()
     {
+        // given
         var labelPrinter = new Mock<ILabelPrinter>();
         var useCase = new PrintLabelUseCase(labelPrinter.Object);
-        var content = string.Join(
-            "\t",
-            [
-                "factory",
-                "FP1",
-                "parts",
-                "id",
-                "barcode",
-                "product",
-                "12",
-                "34",
-                "Tokyo",
-                "registrant",
-                "using-shop",
-                "responsible-shop",
-                "order",
-                "item",
-                "lot",
-                "start",
-                "end",
-                "status",
-                "area",
-                "sequence",
-                "shop",
-                "completion",
-                "1",
-                "mnd",
-                "alert",
-            ]);
+        var param = new ShopOrderParam(
+            SourceAircraftModel: "FP1",
+            LeftQuantity: "12",
+            RightQuantity: "34",
+            Destination: "Tokyo",
+            SourceShortageSign: "1");
 
-        await useCase.ExecuteAsync(content);
+        // when
+        await useCase.ExecuteAsync(param);
 
+        // then
         labelPrinter.Verify(
             printer => printer.PrintAsync(It.Is<LabelPrintContent>(printContent =>
                 printContent.AircraftModel.PrintValue == "777" &&
@@ -57,7 +37,7 @@ public sealed class PrintLabelUseCaseTests
     }
 
     [TestMethod]
-    public async Task 異常系_contentがnullの場合はArgumentNullExceptionを送出し印刷しないこと()
+    public async Task 異常系_shopOrderがnullの場合はArgumentNullExceptionを送出し印刷しないこと()
     {
         // given
         var labelPrinter = new Mock<ILabelPrinter>();

@@ -18,4 +18,5 @@
   <Project Path="Wada.SOReplaceLabel.DomainTests/Wada.SOReplaceLabel.DomainTests.csproj" />
   <Project Path="Wada.SOReplaceLabel.Infrastructure/Wada.SOReplaceLabel.Infrastructure.csproj" />
   <Project Path="Wada.SOReplaceLabel.Wpf/Wada.SOReplaceLabel.Wpf.csproj" />
+  <Project Path="Wada.SOReplaceLabel.WpfTests/Wada.SOReplaceLabel.WpfTests.csproj" />
 </Solution>
