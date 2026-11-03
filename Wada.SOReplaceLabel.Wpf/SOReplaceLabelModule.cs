@@ -1,3 +1,5 @@
+using Prism.Ioc;
+using Prism.Modularity;
 using Wada.SOReplaceLabel.Wpf.Views;
 
 namespace Wada.SOReplaceLabel.Wpf;
