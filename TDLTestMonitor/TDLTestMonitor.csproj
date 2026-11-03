@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Wada.SOReplaceLabel.Infrastructure\Wada.SOReplaceLabel.Infrastructure.csproj" />
     <ProjectReference Include="..\Wada.SOReplaceLabel.Wpf\Wada.SOReplaceLabel.Wpf.csproj" />
   </ItemGroup>
 

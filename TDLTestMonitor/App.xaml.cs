@@ -1,9 +1,8 @@
-using System.Configuration;
-using System.Data;
 using System.Windows;
-using Prism.DryIoc;
+using Wada.SOReplaceLabel.Application.LabelPrinter;
+using Wada.SOReplaceLabel.Domain;
+using Wada.SOReplaceLabel.Infrastructure.StarIO;
 using Wada.SOReplaceLabel.Wpf;
-using Wada.SOReplaceLabel.Wpf.ViewModels;
 
 namespace TDLTestMonitor;
 /// <summary>
@@ -18,6 +17,8 @@ public partial class App
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
+        containerRegistry.Register<IPrintLabelUseCase, PrintLabelUseCase>();
+        containerRegistry.Register<ILabelPrinter, LabelPrinter>();
     }
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
