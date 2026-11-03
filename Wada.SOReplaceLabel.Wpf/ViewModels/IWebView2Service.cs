@@ -3,7 +3,7 @@ using Microsoft.Web.WebView2.Core;
 namespace Wada.SOReplaceLabel.Wpf.ViewModels;
 
 // Services/IWebView2Service.cs
-public interface IWebView2Service
+internal interface IWebView2Service
 {
     Task InitializeAsync(string userDataFolder);
     void Navigate(string url);

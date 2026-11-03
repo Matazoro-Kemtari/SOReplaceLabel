@@ -4,7 +4,7 @@ using Microsoft.Web.WebView2.Wpf;
 namespace Wada.SOReplaceLabel.Wpf.ViewModels;
 
 // Services/WebView2Service.cs
-public class WebView2Service(WebView2 webView) : IWebView2Service
+internal class WebView2Service(WebView2 webView) : IWebView2Service
 {
     private readonly WebView2 _webView = webView ?? throw new ArgumentNullException(nameof(webView));
     private CoreWebView2Environment? _environment;

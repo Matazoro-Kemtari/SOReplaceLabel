@@ -9,7 +9,18 @@
              xmlns:viewmodels="clr-namespace:Wada.SOReplaceLabel.Wpf.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance Type=viewmodels:WebViewPageViewModel}">
+             d:DataContext="{d:DesignInstance Type=viewmodels:WebViewPageViewModel}"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:l="http://schemas.livet-mvvm.net/2011/wpf">
+    <i:Interaction.Triggers>
+        <l:InteractionMessageTrigger MessageKey="Info" Messenger="{Binding Messenger}">
+            <l:InformationDialogInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+        <l:InteractionMessageTrigger MessageKey="Confirm" Messenger="{Binding Messenger}">
+            <l:ConfirmationDialogInteractionMessageAction/>
+        </l:InteractionMessageTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <wv2:WebView2 x:Name="webView" />
     </Grid>

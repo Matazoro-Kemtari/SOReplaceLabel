@@ -1,12 +1,12 @@
-using System;
 using System.IO;
 using System.Reactive.Disposables;
 using System.Text.Json;
-using Prism.Mvvm;
+using Livet.Messaging;
+using Wada.SOReplaceLabel.Application.LabelPrinter;
 
 namespace Wada.SOReplaceLabel.Wpf.ViewModels;
 
-public class WebViewPageViewModel : BindableBase, IDestructible
+public class WebViewPageViewModel(IPrintLabelUseCase printLabelUseCase) : BindableBase, IDestructible
 {
     private IWebView2Service? _webViewService;
 
@@ -64,7 +64,7 @@ public class WebViewPageViewModel : BindableBase, IDestructible
     };
 })();";
 
-    public async Task InitializeAsync(IWebView2Service webView2Service)
+    internal async Task InitializeAsync(IWebView2Service webView2Service)
     {
         _webViewService = webView2Service;
         _webViewService.WebMessageReceived += OnWebMessageReceived;
@@ -82,7 +82,7 @@ public class WebViewPageViewModel : BindableBase, IDestructible
         _webViewService.Navigate("https://ghsam095mgs.mhi.co.jp/KIT/Transit/Transit_PT.asp");
     }
 
-    private void OnWebMessageReceived(object sender, string json)
+    private async void OnWebMessageReceived(object sender, string json)
     {
         if (string.IsNullOrEmpty(json)) return;
 
@@ -97,11 +97,12 @@ public class WebViewPageViewModel : BindableBase, IDestructible
             if (payload == null) return;
 
             // 印刷処理
-            //ProcessAndPrint(payload);
+            await ProcessAndPrintAsync(payload);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            throw new InvalidOperationException($"Error processing web message: {ex.Message}", ex);
+            var message = MessageNotificationViaLivet.MakeErrorMessage("印刷に失敗しました");
+            await Messenger.RaiseAsync(message);
         }
     }
 
@@ -110,13 +111,19 @@ public class WebViewPageViewModel : BindableBase, IDestructible
     /// </summary>
     private CompositeDisposable Disposables { get; } = [];
 
+    public InteractionMessenger Messenger { get; } = new InteractionMessenger();
+
     public void Destroy()
     {
-        if (_webViewService != null)
-        {
-            _webViewService.WebMessageReceived -= OnWebMessageReceived;
-        }
+        _webViewService?.WebMessageReceived -= OnWebMessageReceived;
         Disposables.Dispose();
+    }
+
+    private async Task ProcessAndPrintAsync(ShopOrderPayload payload)
+    {
+        if (payload is null) throw new ArgumentNullException(nameof(payload));
+
+        await printLabelUseCase.ExecuteAsync(payload.ToParam());
     }
 
     public class ShopOrderPayload
@@ -245,5 +252,10 @@ public class WebViewPageViewModel : BindableBase, IDestructible
         /// アラートフラグ
         /// </summary>
         public string AletFlag { get; set; } = string.Empty;
+
+        internal ShopOrderParam ToParam()
+        {
+            return new(SourceAircraftModel, LeftQuantity, RightQuantity, Destination, SourceShortageSign);
+        }
     }
 }
