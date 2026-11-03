@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!-- ####################################################################
+
+This file was generates automatically via the 
+IconPacks.Browser (MIT-License). 
+
+Visit https://github.com/MahApps/MahApps.Metro.IconPacks and 
+https://github.com/MahApps/MahApps.Metro.IconPacks/blob/develop/LICENSE 
+for more information.
+ 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+Icon-Name: 			ReceiptLong
+Iconpack:			MaterialDesign
+Iconpack-Homepage: 	https://github.com/marella/material-icons
+Iconpack-License:	https://github.com/marella/material-icons?tab=Apache-2.0-1-ov-file
+
+#####################################################################-->
+
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="48"
+     height="48">
+    <path d="M 6 2 L 6 16 L 3 16 L 3 19 C 3 20.659998 4.3400017 22 6 22 L 18 22 C 19.659998 22 21 20.659998 21 19 L 21 2 L 19.5 3.5 L 18 2 L 16.5 3.5 L 15 2 L 13.5 3.5 L 12 2 L 10.5 3.5 L 9 2 L 7.5 3.5 L 6 2 z M 8 5 L 19 5 L 19 19 C 19 19.549999 18.549999 20 18 20 C 17.450001 20 17 19.549999 17 19 L 17 16 L 8 16 L 8 5 z M 9 7 L 9 9 L 15 9 L 15 7 L 9 7 z M 16 7 L 16 9 L 18 9 L 18 7 L 16 7 z M 9 10 L 9 12 L 15 12 L 15 10 L 9 10 z M 16 10 L 16 12 L 18 12 L 18 10 L 16 10 z "
+          style="fill:#000000;
+                 stroke:none
+                 stroke-width:0;
+                 stroke-linecap:flat;
+                 stroke-linejoin:miter;"
+          transform="matrix(2.4,0,0,2.4,-4.8,-4.8)" />
+</svg>

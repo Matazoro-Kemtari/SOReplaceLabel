@@ -1,6 +1,9 @@
 using System.Diagnostics;
 using System.Windows;
 using SOReplaceLabel.Views;
+using Prism.DryIoc;
+using Prism.Ioc;
+using Prism.Modularity;
 using Wada.SOReplaceLabel.Application.LabelPrinter;
 using Wada.SOReplaceLabel.Domain;
 using Wada.SOReplaceLabel.Infrastructure.StarIO;

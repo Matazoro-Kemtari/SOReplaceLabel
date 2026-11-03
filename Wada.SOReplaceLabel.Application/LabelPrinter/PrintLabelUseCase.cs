@@ -15,7 +15,7 @@ public class PrintLabelUseCase(ILabelPrinter labelPrinter) : IPrintLabelUseCase
     {
         if (content is null) throw new ArgumentNullException(nameof(content));
 
-        var shopOrder = ShopOrderReader.Read(content);
+        //var shopOrder = ShopOrderReader.Read(content);
 
         await labelPrinter.PrintAsync(shopOrder.ConvertLabelPrintContent());
     }

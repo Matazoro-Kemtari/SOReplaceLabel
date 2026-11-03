@@ -5,7 +5,7 @@
 		<TargetFramework>net48</TargetFramework>
 		<UseWPF>true</UseWPF>
 		<LangVersion>Latest</LangVersion>
-		<PlatformTarget>x64</PlatformTarget>
+		<PlatformTarget>AnyCPU</PlatformTarget>
 		<ApplicationIcon>label.ico</ApplicationIcon>
 
 		<Title>SOReplaceLabel</Title>
@@ -27,7 +27,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Prism.DryIoc" Version="9.0.537" />
+		<PackageReference Include="MahApps.Metro" Version="2.4.11" />
+		<PackageReference Include="MahApps.Metro.IconPacks" Version="6.2.1" />
+		<PackageReference Include="Prism.DryIoc" Version="9.0.537" />
+		<PackageReference Include="Prism.Container.Abstractions" Version="9.0.114" />
+		<PackageReference Include="Prism.Container.DryIoc" Version="9.0.114" />
 	</ItemGroup>
 
 	<ItemGroup>
